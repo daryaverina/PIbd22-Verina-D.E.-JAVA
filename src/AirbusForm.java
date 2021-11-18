@@ -3,15 +3,19 @@ import java.awt.*;
 
 public class AirbusForm {
 
-    private JButton createButton;
+    private JButton createPlaneButton;
+    private JButton createAirbusButton;
     private JButton upButton;
     private JButton leftButton;
     private JButton rightButton;
     private JButton downButton;
-    private JComboBox<Integer> choiceButton;
+    private JComboBox<Integer> choiceCountWindowButton;
+    private JComboBox<String> choiceAddingButton;
+    // private JComboBox<Integer> choiceButton;
     private Airbus airbus;
     private JFrame frame;
     private DrawPicture draw;
+    private ITransport transport;
 
 
 
@@ -19,26 +23,26 @@ public class AirbusForm {
         String temp = button.getName();
         switch (temp) {
             case "Up":
-                airbus.moveTrans(Direction.Up);
+                transport.MoveTransport(Direction.Up);
                 break;
             case "Down":
-                airbus.moveTrans(Direction.Down);
+                transport.MoveTransport(Direction.Down);
                 break;
             case "Left":
-                airbus.moveTrans(Direction.Left);
+                transport.MoveTransport(Direction.Left);
                 break;
             case "Right":
-                airbus.moveTrans(Direction.Right);
+                transport.MoveTransport(Direction.Right);
                 break;
         }
         frame.repaint();
     }
 
     public void initialization() {
-        Icon up = new ImageIcon("images/up_arrow_30.jpg");
-        Icon down = new ImageIcon("images/down_arrow_30.jpg");
-        Icon left = new ImageIcon("images/left_arrow_30.jpg");
-        Icon right = new ImageIcon("images/right_arrow_30.jpg");
+        Icon up = new ImageIcon("C:\\Users\\verin\\Desktop\\univer\\up_arrow_30.jpg");
+        Icon down = new ImageIcon("C:\\Users\\verin\\Desktop\\univer\\down_arrow_30.jpg");
+        Icon left = new ImageIcon("C:\\Users\\verin\\Desktop\\univer\\left_arrow_30.jpg");
+        Icon right = new ImageIcon("C:\\Users\\verin\\Desktop\\univer\\right_arrow_30.jpg");
         upButton = new JButton(up);
         upButton.setName("Up");
         upButton.setBounds(721, 372, 30, 30);
@@ -64,22 +68,53 @@ public class AirbusForm {
         rightButton.setEnabled(false);
         leftButton.setEnabled(false);
 
-        createButton = new JButton("Создать");
-        createButton.setBounds(12, 40, 85, 23);
-        createButton.addActionListener(e -> {
-            airbus = new Airbus(100 + ((int) (Math.random() * 300)), 1000 + ((int) (Math.random() * 2000)), Color.BLUE,
-                    Color.YELLOW, true, true, choiceButton.getSelectedIndex());
-            airbus.setPosition(10 + ((int) (Math.random() * 100)), 10 + ((int) (Math.random() * 100)), 900, 500);
+
+        createPlaneButton = new JButton("Create Plane");
+        createPlaneButton.setBounds(0, 0, 130, 30);
+        createPlaneButton.addActionListener(e -> {
+            transport = new Plane(100 + ((int) (Math.random() * 300)), 1000 + ((int) (Math.random() * 2000)), Color.YELLOW);
+            transport.setPosition(10 + ((int) (Math.random() * 100)), 10 + ((int) (Math.random() * 100)), 900, 500);
+            draw.setTransport(transport);
             upButton.setEnabled(true);
             downButton.setEnabled(true);
             rightButton.setEnabled(true);
             leftButton.setEnabled(true);
-            draw.setPlane(airbus);
             frame.repaint();
         });
 
-        choiceButton = new JComboBox<>(new Integer[]{10, 20, 30});
-        choiceButton.setBounds(12, 12, 85, 23);
+        createAirbusButton = new JButton("Create Airbus");
+        createAirbusButton.setBounds(150, 0, 140, 30);
+        createAirbusButton.addActionListener(e -> {
+            transport = new Airbus(100 + ((int) (Math.random() * 300)), 1000 + ((int) (Math.random() * 2000)), Color.YELLOW, Color.BLUE,
+                    true, true,  choiceAddingButton.getSelectedIndex(), choiceCountWindowButton.getSelectedIndex());
+            transport.setPosition(10 + ((int) (Math.random() * 100)), 10 + ((int) (Math.random() * 100)), 900, 500);
+            draw.setTransport(transport);
+            upButton.setEnabled(true);
+            downButton.setEnabled(true);
+            rightButton.setEnabled(true);
+            leftButton.setEnabled(true);
+            frame.repaint();
+        });
+
+        /*
+        createButton = new JButton("Create");
+        createButton.setBounds(12, 40, 75, 23);
+        createButton.addActionListener(e -> {
+            airbus = new Airbus(100 + ((int) (Math.random() * 300)), 1000 + ((int) (Math.random() * 2000)), Color.BLUE,
+                    Color.YELLOW, true, true, choiceButton.getSelectedIndex());
+            airbus.setPosition(10 + ((int) (Math.random() * 100)), 10 + ((int) (Math.random() * 100)), 900, 500);*/
+
+        //  draw.setPlane(airbus);
+        //  frame.repaint();
+        //});
+
+        //  choiceButton = new JComboBox<>(new Integer[]{10, 20, 30});
+        //choiceButton.setBounds(12, 40, 75, 23);
+        choiceAddingButton = new JComboBox<>(new String[]{"Circle", "Oval", "Rectangle"});
+        choiceAddingButton.setBounds(0, 40, 130, 30);
+
+        choiceCountWindowButton = new JComboBox<>(new Integer[]{10, 20, 30});
+        choiceCountWindowButton.setBounds(150, 40, 130, 30);
     }
 
     public AirbusForm() {
@@ -90,12 +125,14 @@ public class AirbusForm {
         frame.setVisible(true);
         frame.setResizable(false);
         initialization();
-        frame.getContentPane().add(createButton);
+        frame.getContentPane().add(createPlaneButton);
+        frame.getContentPane().add(createAirbusButton);
         frame.getContentPane().add(upButton);
         frame.getContentPane().add(downButton);
         frame.getContentPane().add(leftButton);
         frame.getContentPane().add(rightButton);
-        frame.getContentPane().add(choiceButton);
+        frame.getContentPane().add(choiceCountWindowButton);
+        frame.getContentPane().add(choiceAddingButton);
         frame.getContentPane().add(draw);
         draw.setBounds(0, 0, 900, 500);
         frame.repaint();

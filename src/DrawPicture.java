@@ -3,19 +3,20 @@ import java.awt.*;
 
 public class DrawPicture extends JPanel {
 
-    private Airbus airbus;
+    private ITransport transport;
 
     public void paintComponent(Graphics g) {
-        if (airbus != null) {
-            airbus.drawPicture(g);
+        if (transport != null) {
+            transport.DrawTransport(g);
         }
     }
 
-    public void setPlane(Airbus airbus) {
-        this.airbus = airbus;
+    public void setTransport(ITransport transport) {
+        this.transport = transport;
     }
 
-    public Airbus getPlane() {
-        return airbus;
+    public ITransport getTransport() {
+        return transport;
     }
+
 }
