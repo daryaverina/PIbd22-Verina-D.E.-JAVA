@@ -15,8 +15,7 @@ public class Airbus {
     public Color DopColor;
     public boolean Star;
     public boolean SecondLevel;
-    private Window window;
-
+    private Illuminator illuminator;
 
     public float getStartPosX() {
         return _startPosX;
@@ -75,15 +74,15 @@ public class Airbus {
     }
 
     public Airbus(int maxSpeed, float weight, Color mainColor, Color dopColor,
-                  boolean star, boolean secondlevel, int windowcount) {
+                  boolean star, boolean secondlevel, int illuminatorcount) {
         this.MaxSpeed = maxSpeed;
         this.Weight = weight;
         this.MainColor = mainColor;
         this.DopColor = dopColor;
         this.Star = star;
         this.SecondLevel = secondlevel;
-        window = new Window();
-        window.setNumber(windowcount);
+        illuminator = new Illuminator();
+        illuminator.setNumber(illuminatorcount);
     }
 
     public void setPosition(int x, int y, int width, int height) {
@@ -230,7 +229,7 @@ public class Airbus {
             g.fillPolygon(starPolygon);
             g.setColor(Color.BLACK);
         }
-        window.DrawWindow(g, _startPosX, _startPosY, airbusWidth, airbusHeight);
+        illuminator.DrawIlluminator(g, _startPosX, _startPosY, airbusWidth, airbusHeight);
         Polygon wings2 = new Polygon();
         wings2.addPoint(_startPosX + 65, _startPosY + 88);
         wings2.addPoint(_startPosX + 85, _startPosY + 88);

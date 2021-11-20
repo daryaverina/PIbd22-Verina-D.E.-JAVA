@@ -13,8 +13,6 @@ public class AirbusForm {
     private JFrame frame;
     private DrawPicture draw;
 
-
-
     public void direction(JButton button) {
         String temp = button.getName();
         switch (temp) {
