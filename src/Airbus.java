@@ -166,7 +166,6 @@ public class Airbus {
         front2.addPoint(_startPosX + 265, _startPosY + 100);
         g.fillPolygon(front2);
 
-
         if (!SecondLevel)
         {
             Polygon wing = new Polygon();
@@ -207,7 +206,6 @@ public class Airbus {
             secondlevel2.addPoint(_startPosX + 10, _startPosY);
             g.fillPolygon( secondlevel2);
         }
-
 
         if (Star)
         {
