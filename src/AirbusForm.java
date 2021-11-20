@@ -9,9 +9,8 @@ public class AirbusForm {
     private JButton leftButton;
     private JButton rightButton;
     private JButton downButton;
-    private JComboBox<Integer> choiceCountWindowButton;
+    private JComboBox<Integer> choiceCountIlluminatorButton;
     private JComboBox<String> choiceAddingButton;
-    // private JComboBox<Integer> choiceButton;
     private Airbus airbus;
     private JFrame frame;
     private DrawPicture draw;
@@ -39,10 +38,10 @@ public class AirbusForm {
     }
 
     public void initialization() {
-        Icon up = new ImageIcon("C:\\Users\\verin\\Desktop\\univer\\up_arrow_30.jpg");
-        Icon down = new ImageIcon("C:\\Users\\verin\\Desktop\\univer\\down_arrow_30.jpg");
-        Icon left = new ImageIcon("C:\\Users\\verin\\Desktop\\univer\\left_arrow_30.jpg");
-        Icon right = new ImageIcon("C:\\Users\\verin\\Desktop\\univer\\right_arrow_30.jpg");
+        Icon up = new ImageIcon("images\\up_arrow_30.jpg");
+        Icon down = new ImageIcon("images\\down_arrow_30.jpg");
+        Icon left = new ImageIcon("images\\left_arrow_30.jpg");
+        Icon right = new ImageIcon("images\\right_arrow_30.jpg");
         upButton = new JButton(up);
         upButton.setName("Up");
         upButton.setBounds(721, 372, 30, 30);
@@ -86,7 +85,7 @@ public class AirbusForm {
         createAirbusButton.setBounds(150, 0, 140, 30);
         createAirbusButton.addActionListener(e -> {
             transport = new Airbus(100 + ((int) (Math.random() * 300)), 1000 + ((int) (Math.random() * 2000)), Color.YELLOW, Color.BLUE,
-                    true, true,  choiceAddingButton.getSelectedIndex(), choiceCountWindowButton.getSelectedIndex());
+                    true, true,  choiceAddingButton.getSelectedIndex(), choiceCountIlluminatorButton.getSelectedIndex());
             transport.setPosition(10 + ((int) (Math.random() * 100)), 10 + ((int) (Math.random() * 100)), 900, 500);
             draw.setTransport(transport);
             upButton.setEnabled(true);
@@ -113,8 +112,8 @@ public class AirbusForm {
         choiceAddingButton = new JComboBox<>(new String[]{"Circle", "Oval", "Rectangle"});
         choiceAddingButton.setBounds(0, 40, 130, 30);
 
-        choiceCountWindowButton = new JComboBox<>(new Integer[]{10, 20, 30});
-        choiceCountWindowButton.setBounds(150, 40, 130, 30);
+        choiceCountIlluminatorButton = new JComboBox<>(new Integer[]{10, 20, 30});
+        choiceCountIlluminatorButton.setBounds(150, 40, 130, 30);
     }
 
     public AirbusForm() {
@@ -131,7 +130,7 @@ public class AirbusForm {
         frame.getContentPane().add(downButton);
         frame.getContentPane().add(leftButton);
         frame.getContentPane().add(rightButton);
-        frame.getContentPane().add(choiceCountWindowButton);
+        frame.getContentPane().add(choiceCountIlluminatorButton);
         frame.getContentPane().add(choiceAddingButton);
         frame.getContentPane().add(draw);
         draw.setBounds(0, 0, 900, 500);

@@ -4,15 +4,10 @@ import javax.swing.*;
 
 public class Airbus extends Plane {
 
-
-
     public Color DopColor;
     public boolean Star;
     public boolean SecondLevel;
-    //private Window window;
-    private InterDop adding;
-
-
+    private IIlluminator Illum;
 
     public Color getDopColor() {
         return DopColor;
@@ -39,7 +34,7 @@ public class Airbus extends Plane {
     }
 
     public Airbus(int maxSpeed, float weight, Color mainColor, Color dopColor,
-                  boolean star, boolean secondlevel, int add, int WindowNumber) {
+                  boolean star, boolean secondlevel, int add, int IlluminatorNumber) {
         super(maxSpeed, weight, mainColor, 100, 100);
         this.MaxSpeed = maxSpeed;
         this.Weight = weight;
@@ -47,18 +42,16 @@ public class Airbus extends Plane {
         this.DopColor = dopColor;
         this.Star = star;
         this.SecondLevel = secondlevel;
-        // window = new Window();
-        //window.setNumber(windowcount);
 
         switch (add) {
             case 0:
-                adding = new WindowCircle(WindowNumber);
+                Illum = new IlluminatorCircle(IlluminatorNumber);
                 break;
             case 1:
-                adding = new WindowOval(WindowNumber);
+                Illum = new IlluminatorOval(IlluminatorNumber);
                 break;
             case 2:
-                adding = new WindowSquare(WindowNumber);
+                Illum = new IlluminatorSquare(IlluminatorNumber);
                 break;
         }
     }
@@ -68,16 +61,12 @@ public class Airbus extends Plane {
 
         super.DrawTransport(g);
 
-
         if (SecondLevel)
         {
             g.setColor(MainColor);
             g.fillOval( _startPosX + 3, _startPosY + 50, 25, 12);
             g.setColor(Color.BLACK);
             g.drawOval( _startPosX + 3, _startPosY + 50, 25, 12);
-
-
-
 
             Polygon secondlevel = new Polygon();
             secondlevel.addPoint(_startPosX + 20, _startPosY + 50);
@@ -104,7 +93,6 @@ public class Airbus extends Plane {
             g.fillPolygon( secondlevel2);
         }
 
-
         if (!SecondLevel)
         {
 
@@ -114,8 +102,8 @@ public class Airbus extends Plane {
             wing.addPoint(_startPosX + 75, _startPosY + 25);
             wing.addPoint(_startPosX + 60, _startPosY + 25);
             g.fillPolygon(wing);
-
         }
+
         if (Star)
         {
             int x_ = 62;
@@ -134,13 +122,9 @@ public class Airbus extends Plane {
             g.setColor(DopColor);
             g.fillPolygon(starPolygon);
             g.setColor(Color.BLACK);
-
-
-
-
         }
 
-        adding.draw(g, _startPosX, _startPosY, planeWidth, planeHeight);
+        Illum.draw(g, _startPosX, _startPosY, planeWidth, planeHeight);
         Polygon wings2 = new Polygon();
         wings2.addPoint(_startPosX + 65, _startPosY + 88);
         wings2.addPoint(_startPosX + 85, _startPosY + 88);
@@ -154,15 +138,5 @@ public class Airbus extends Plane {
         wings3.addPoint(_startPosX + 140, _startPosY + 80);
         wings3.addPoint(_startPosX + 125, _startPosY + 80);
         g.fillPolygon(wings3);
-
-
-
-
-
-
-
-        //дорисовать окна разной формы
-        //window.DrawWindow(g, _startPosX, _startPosY, airbusWidth, airbusHeight);
-
     }
 }
