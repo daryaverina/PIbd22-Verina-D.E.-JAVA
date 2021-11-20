@@ -34,7 +34,7 @@ public class Airbus extends Plane {
     }
 
     public Airbus(int maxSpeed, float weight, Color mainColor, Color dopColor,
-                  boolean star, boolean secondlevel, int add, int IlluminatorNumber) {
+                  boolean star, boolean secondlevel, int windowcount, int IlluminatorNumber) {
         super(maxSpeed, weight, mainColor, 100, 100);
         this.MaxSpeed = maxSpeed;
         this.Weight = weight;
@@ -43,7 +43,7 @@ public class Airbus extends Plane {
         this.Star = star;
         this.SecondLevel = secondlevel;
 
-        switch (add) {
+        switch (windowcount) {
             case 0:
                 Illum = new IlluminatorCircle(IlluminatorNumber);
                 break;
