@@ -8,6 +8,39 @@ public class Airbus extends Plane {
     public boolean Star;
     public boolean SecondLevel;
     private IIlluminator Illum;
+    private Illuminator illuminator;
+
+    public float getStartPosX() {
+        return _startPosX;
+    }
+
+    private void setStartPosX(int startPosX) {
+        this._startPosX = startPosX;
+    }
+
+    public int getMaxSpeed() {
+        return MaxSpeed;
+    }
+
+    private void setMaxSpeed(int maxSpeed) {
+        this.MaxSpeed = maxSpeed;
+    }
+
+    public float getWeight() {
+        return Weight;
+    }
+
+    private void setWeight(float weight) {
+        this.Weight = weight;
+    }
+
+    public Color getMainColor() {
+        return MainColor;
+    }
+
+    private void setMainColor(Color mainColor) {
+        this.MainColor = mainColor;
+    }
 
     public Color getDopColor() {
         return DopColor;
@@ -35,13 +68,25 @@ public class Airbus extends Plane {
 
     public Airbus(int maxSpeed, float weight, Color mainColor, Color dopColor,
                   boolean star, boolean secondlevel, int windowcount, int IlluminatorNumber) {
-        super(maxSpeed, weight, mainColor, 100, 100);
+                  boolean star, boolean secondlevel, int illuminatorcount) {
         this.MaxSpeed = maxSpeed;
         this.Weight = weight;
         this.MainColor = mainColor;
         this.DopColor = dopColor;
         this.Star = star;
         this.SecondLevel = secondlevel;
+        illuminator = new Illuminator();
+        illuminator.setNumber(illuminatorcount);
+    }
+
+    public void setPosition(int x, int y, int width, int height) {
+        if (x >= 0 && x + airbusWidth < width && y >= 0 && y + airbusHeight < height) {
+            _startPosX = x;
+            _startPosY = y;
+            _pictureWidth = width;
+            _pictureHeight = height;
+        }
+    }
 
         switch (windowcount) {
             case 0:
@@ -56,11 +101,18 @@ public class Airbus extends Plane {
         }
     }
 
-
     public void DrawTransport(Graphics g) {
 
         super.DrawTransport(g);
-
+        if (!SecondLevel)
+        {
+            Polygon wing = new Polygon();
+            wing.addPoint(_startPosX + 75, _startPosY + 75);
+            wing.addPoint(_startPosX + 120, _startPosY + 75);
+            wing.addPoint(_startPosX + 75, _startPosY + 25);
+            wing.addPoint(_startPosX + 60, _startPosY + 25);
+            g.fillPolygon(wing);
+        }
         if (SecondLevel)
         {
             g.setColor(MainColor);
@@ -124,7 +176,10 @@ public class Airbus extends Plane {
             g.setColor(Color.BLACK);
         }
 
+
         Illum.draw(g, _startPosX, _startPosY, planeWidth, planeHeight);
+        illuminator.DrawIlluminator(g, _startPosX, _startPosY, airbusWidth, airbusHeight);
+      
         Polygon wings2 = new Polygon();
         wings2.addPoint(_startPosX + 65, _startPosY + 88);
         wings2.addPoint(_startPosX + 85, _startPosY + 88);

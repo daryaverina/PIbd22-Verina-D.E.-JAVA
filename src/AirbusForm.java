@@ -16,8 +16,6 @@ public class AirbusForm {
     private DrawPicture draw;
     private ITransport transport;
 
-
-
     public void direction(JButton button) {
         String temp = button.getName();
         switch (temp) {
