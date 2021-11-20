@@ -38,10 +38,10 @@ public class AirbusForm {
     }
 
     public void initialization() {
-        Icon up = new ImageIcon("images\\up_arrow_30.jpg");
-        Icon down = new ImageIcon("images\\down_arrow_30.jpg");
-        Icon left = new ImageIcon("images\\left_arrow_30.jpg");
-        Icon right = new ImageIcon("images\\right_arrow_30.jpg");
+        Icon up = new ImageIcon("images/up_arrow_30.jpg");
+        Icon down = new ImageIcon("images/down_arrow_30.jpg");
+        Icon left = new ImageIcon("images/left_arrow_30.jpg");
+        Icon right = new ImageIcon("images/right_arrow_30.jpg");
         upButton = new JButton(up);
         upButton.setName("Up");
         upButton.setBounds(721, 372, 30, 30);
@@ -66,7 +66,6 @@ public class AirbusForm {
         downButton.setEnabled(false);
         rightButton.setEnabled(false);
         leftButton.setEnabled(false);
-
 
         createPlaneButton = new JButton("Create Plane");
         createPlaneButton.setBounds(0, 0, 130, 30);
@@ -95,20 +94,6 @@ public class AirbusForm {
             frame.repaint();
         });
 
-        /*
-        createButton = new JButton("Create");
-        createButton.setBounds(12, 40, 75, 23);
-        createButton.addActionListener(e -> {
-            airbus = new Airbus(100 + ((int) (Math.random() * 300)), 1000 + ((int) (Math.random() * 2000)), Color.BLUE,
-                    Color.YELLOW, true, true, choiceButton.getSelectedIndex());
-            airbus.setPosition(10 + ((int) (Math.random() * 100)), 10 + ((int) (Math.random() * 100)), 900, 500);*/
-
-        //  draw.setPlane(airbus);
-        //  frame.repaint();
-        //});
-
-        //  choiceButton = new JComboBox<>(new Integer[]{10, 20, 30});
-        //choiceButton.setBounds(12, 40, 75, 23);
         choiceAddingButton = new JComboBox<>(new String[]{"Circle", "Oval", "Rectangle"});
         choiceAddingButton.setBounds(0, 40, 130, 30);
 

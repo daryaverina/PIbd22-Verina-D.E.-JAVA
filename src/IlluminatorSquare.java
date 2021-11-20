@@ -18,9 +18,7 @@ public class IlluminatorSquare implements IIlluminator {
         for (int i = 0; i < 10; i++) {
             g.setColor(Color.WHITE);
             g.fillRect(x,_startPosY+81,5,7);
-            //  g.fillOval(x, _startPosY + 81, 5, 7);
             g.setColor(Color.BLACK);
-            // g.drawOval(x, _startPosY + 81, 5, 7);
             g.drawRect(x,_startPosY+81,5,7);
             x += 18;
         }
@@ -29,9 +27,7 @@ public class IlluminatorSquare implements IIlluminator {
             for (int i = 0; i < 10; i++) {
                 g.setColor(Color.WHITE);
                 g.fillRect(x,_startPosY+71,5,7);
-                //  g.fillOval(x, _startPosY + 71, 5, 7);
                 g.setColor(Color.BLACK);
-                //g.drawOval(x, _startPosY + 71, 5, 7);
                 g.drawRect(x,_startPosY+71,5,7);
                 x += 18;
             }
@@ -40,10 +36,8 @@ public class IlluminatorSquare implements IIlluminator {
         if (countWin == IlluminatorCount.thirty) {
             for (int i = 0; i < 10; i++) {
                 g.setColor(Color.WHITE);
-                //  g.fillOval(x, _startPosY + 61, 5, 7);
                 g.fillRect(x,_startPosY+61,5,7);
                 g.setColor(Color.BLACK);
-                // g.drawOval(x, _startPosY + 61, 5, 7);
                 g.drawRect(x,_startPosY+61,5,7);
                 x += 18;
             }

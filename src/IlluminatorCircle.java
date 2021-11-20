@@ -43,6 +43,5 @@ public class IlluminatorCircle implements IIlluminator{
             }
         }
     }
-
 }
 

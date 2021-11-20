@@ -99,7 +99,6 @@ public class Plane extends Vehicle{
         wings4.addPoint(_startPosX + 75, _startPosY + 25);
         wings4.addPoint(_startPosX + 60, _startPosY + 25);
         g.fillPolygon(wings4);
-
     }
     @Override
     public void MoveTransport(Direction direction) {
@@ -137,5 +136,4 @@ public class Plane extends Vehicle{
                 break;
         }
     }
-
 }
