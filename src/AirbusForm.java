@@ -62,21 +62,12 @@ public class AirbusForm {
         leftButton.setBounds(685, 408, 30, 30);
         leftButton.addActionListener(e -> direction(leftButton));
 
-        upButton.setEnabled(false);
-        downButton.setEnabled(false);
-        rightButton.setEnabled(false);
-        leftButton.setEnabled(false);
-
         createPlaneButton = new JButton("Create Plane");
         createPlaneButton.setBounds(0, 0, 130, 30);
         createPlaneButton.addActionListener(e -> {
             transport = new Plane(100 + ((int) (Math.random() * 300)), 1000 + ((int) (Math.random() * 2000)), Color.YELLOW);
             transport.setPosition(10 + ((int) (Math.random() * 100)), 10 + ((int) (Math.random() * 100)), 900, 500);
             draw.setTransport(transport);
-            upButton.setEnabled(true);
-            downButton.setEnabled(true);
-            rightButton.setEnabled(true);
-            leftButton.setEnabled(true);
             frame.repaint();
         });
 
@@ -87,10 +78,6 @@ public class AirbusForm {
                     true, true,  choiceAddingButton.getSelectedIndex(), choiceCountIlluminatorButton.getSelectedIndex());
             transport.setPosition(10 + ((int) (Math.random() * 100)), 10 + ((int) (Math.random() * 100)), 900, 500);
             draw.setTransport(transport);
-            upButton.setEnabled(true);
-            downButton.setEnabled(true);
-            rightButton.setEnabled(true);
-            leftButton.setEnabled(true);
             frame.repaint();
         });
 
@@ -105,7 +92,7 @@ public class AirbusForm {
         draw = new DrawPicture();
         frame = new JFrame("Аэробус");
         frame.setSize(816, 489);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.setVisible(true);
         frame.setResizable(false);
         initialization();
@@ -120,5 +107,11 @@ public class AirbusForm {
         frame.getContentPane().add(draw);
         draw.setBounds(0, 0, 900, 500);
         frame.repaint();
+    }
+
+    public void setPlane(ITransport transport) {
+        this.transport = transport;
+        draw.setTransport(transport);
+        //frame.repaint();
     }
 }
