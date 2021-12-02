@@ -67,7 +67,7 @@ public class AirbusForm {
         createPlaneButton.addActionListener(e -> {
             transport = new Plane(100 + ((int) (Math.random() * 300)), 1000 + ((int) (Math.random() * 2000)), Color.YELLOW);
             transport.setPosition(10 + ((int) (Math.random() * 100)), 10 + ((int) (Math.random() * 100)), 900, 500);
-            draw.setTransport(transport);
+           // draw.setTransport(transport);
             frame.repaint();
         });
 
@@ -77,7 +77,7 @@ public class AirbusForm {
             transport = new Airbus(100 + ((int) (Math.random() * 300)), 1000 + ((int) (Math.random() * 2000)), Color.YELLOW, Color.BLUE,
                     true, true,  choiceAddingButton.getSelectedIndex(), choiceCountIlluminatorButton.getSelectedIndex());
             transport.setPosition(10 + ((int) (Math.random() * 100)), 10 + ((int) (Math.random() * 100)), 900, 500);
-            draw.setTransport(transport);
+          //  draw.setTransport(transport);
             frame.repaint();
         });
 
@@ -112,6 +112,6 @@ public class AirbusForm {
     public void setPlane(ITransport transport) {
         this.transport = transport;
         draw.setTransport(transport);
-        //frame.repaint();
+        frame.repaint();
     }
 }
