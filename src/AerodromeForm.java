@@ -111,11 +111,13 @@ public class AerodromeForm {
     private void takePlane() {
         if (!placeTransport.getText().equals("")) {
             try {
+
                 Plane transport = aerodrome.delete(Integer.parseInt(placeTransport.getText()));
                 if (transport != null) {
-                    AirbusForm excavatorForm = new AirbusForm();
-                    excavatorForm.setPlane(transport);
+                    AirbusForm airbusForm = new AirbusForm();
+                    airbusForm.setPlane(transport);
                     frame.repaint();
+
                 } else {
                     JOptionPane.showMessageDialog(frame, "Транспорта не существует");
                 }
@@ -123,6 +125,7 @@ public class AerodromeForm {
                 JOptionPane.showMessageDialog(frame, "Транспорта не существует");
             }
         }
+
     }
 
     private void compare() {

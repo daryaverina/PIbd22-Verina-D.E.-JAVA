@@ -1,19 +1,20 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 public class AirbusForm {
 
-    private JButton createPlaneButton;
-    private JButton createAirbusButton;
+    //private JButton createPlaneButton;
+    //private JButton createAirbusButton;
     private JButton upButton;
     private JButton leftButton;
     private JButton rightButton;
     private JButton downButton;
-    private JComboBox<Integer> choiceCountIlluminatorButton;
-    private JComboBox<String> choiceAddingButton;
+   // private JComboBox<Integer> choiceCountIlluminatorButton;
+    //private JComboBox<String> choiceAddingButton;
     private Airbus airbus;
     private JFrame frame;
-    private DrawPicture draw;
+    private DrawPicture drawp;
     private ITransport transport;
 
 
@@ -62,6 +63,7 @@ public class AirbusForm {
         leftButton.setBounds(685, 408, 30, 30);
         leftButton.addActionListener(e -> direction(leftButton));
 
+        /*
         createPlaneButton = new JButton("Create Plane");
         createPlaneButton.setBounds(0, 0, 130, 30);
         createPlaneButton.addActionListener(e -> {
@@ -85,33 +87,35 @@ public class AirbusForm {
         choiceAddingButton.setBounds(0, 40, 130, 30);
 
         choiceCountIlluminatorButton = new JComboBox<>(new Integer[]{10, 20, 30});
-        choiceCountIlluminatorButton.setBounds(150, 40, 130, 30);
+        choiceCountIlluminatorButton.setBounds(150, 40, 130, 30);*/
     }
 
     public AirbusForm() {
-        draw = new DrawPicture();
+        drawp = new DrawPicture();
         frame = new JFrame("Аэробус");
         frame.setSize(816, 489);
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.setVisible(true);
         frame.setResizable(false);
         initialization();
-        frame.getContentPane().add(createPlaneButton);
-        frame.getContentPane().add(createAirbusButton);
+       // frame.getContentPane().add(createPlaneButton);
+      //  frame.getContentPane().add(createAirbusButton);
         frame.getContentPane().add(upButton);
         frame.getContentPane().add(downButton);
         frame.getContentPane().add(leftButton);
         frame.getContentPane().add(rightButton);
-        frame.getContentPane().add(choiceCountIlluminatorButton);
-        frame.getContentPane().add(choiceAddingButton);
-        frame.getContentPane().add(draw);
-        draw.setBounds(0, 0, 900, 500);
+      //  frame.getContentPane().add(choiceCountIlluminatorButton);
+        //frame.getContentPane().add(choiceAddingButton);
+        frame.getContentPane().add(drawp);
+        drawp.setBounds(0, 0, 900, 500);
         frame.repaint();
     }
 
+
     public void setPlane(ITransport transport) {
         this.transport = transport;
-        draw.setTransport(transport);
-     //   frame.repaint();
+        drawp.setTransport(transport);
+        frame.revalidate();
+        frame.repaint();
     }
 }
