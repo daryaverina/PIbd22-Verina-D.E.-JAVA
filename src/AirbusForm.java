@@ -112,6 +112,6 @@ public class AirbusForm {
     public void setPlane(ITransport transport) {
         this.transport = transport;
         draw.setTransport(transport);
-        frame.repaint();
+     //   frame.repaint();
     }
 }
