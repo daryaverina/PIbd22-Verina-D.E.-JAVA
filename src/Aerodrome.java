@@ -1,10 +1,13 @@
 import java.awt.*;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Aerodrome<T extends ITransport, G extends IIlluminator> {
 
-  //  private final Object[] places;
-    private final T[] places;
+    private final List<T> places;
+
+    private final int maxCount;
 
     private final int pictureWidth;
 
@@ -19,78 +22,51 @@ public class Aerodrome<T extends ITransport, G extends IIlluminator> {
     public Aerodrome(int picWidth, int picHeight) {
         int width = picWidth / placeSizeWidth;
         int height = picHeight / placeSizeHeight;
-        places = (T[]) Array.newInstance(ITransport.class,width * height);
+        maxCount = width * height;
+        places = new ArrayList<>();
         pictureWidth = picWidth;
         pictureHeight = picHeight;
     }
 
     public int add(T plane) {
-        int i = 0;
-        while (i < pictureHeight / placeSizeHeight)
-        {
-            int j = 0;
-            while (j < pictureWidth /placeSizeWidth)
-            {
-                if (places[i * (pictureWidth / placeSizeWidth) + j] == null)
-                {
-                    places[i * (pictureWidth / placeSizeWidth) + j] = plane;
-                    plane.setPosition(placeSizeWidth * j + 5, placeSizeHeight * i + 5, pictureWidth, pictureHeight);
-                    return i;
-                }
-                j++;
-            }
-            i++;
+        if (places.size() < maxCount) {
+            places.add(plane);
+            return places.size();
         }
         return -1;
     }
 
     public T delete(int index) {
-        if ((index > places.length) || (index < 0)) return null;
-        else
-        {
-            if (places[index] == null) return null;
-            else
-            {
-                T temp = places[index];
-                places[index] = null;
-                return temp;
-            }
+        if (index >= 0 && index < maxCount && places.get(index) != null) {
+            T plane = places.get(index);
+            places.remove(index);
+            return plane;
         }
+        return null;
     }
 
-    private boolean CheckFreePlace(int indexPlace) {
+    /*private boolean CheckFreePlace(int indexPlace) {
         return places[indexPlace] == null;
-    }
+    }*/
 
-    public int count(){
-        int counter = 0;
-        for (int i = 0; i < places.length; i++) {
-            if (places[i] != null) {
-                counter++;
-            }
-        }
-        return counter;
-    }
 
     public boolean equal(double number) {
-        return number==count();
+        return number==places.size();
     }
 
     public boolean inequal(double number) {
-        return number!=count();
+        return number!=places.size();
     }
 
     public void Draw(Graphics g) {
         DrawMarking(g);
 
-        for (int i = 0; i <places.length; i++)
+        for (int i = 0; i <places.size(); i++)
         {
-            if(places[i]!=null)
-                places[i].DrawTransport(g);
+            places.get(i).setPosition(i % (pictureWidth / placeSizeWidth) * placeSizeWidth + 6,
+                    i / (pictureWidth / placeSizeWidth) * placeSizeHeight + 5, pictureWidth, pictureHeight);
+            places.get(i).DrawTransport(g);
         }
-    }
-    public void DrawSingle(Graphics g, int i){
-        places[i].DrawTransport(g);
     }
 
     private void DrawMarking(Graphics g) {
@@ -103,6 +79,11 @@ public class Aerodrome<T extends ITransport, G extends IIlluminator> {
                     (pictureHeight / placeSizeHeight) * placeSizeHeight);
         }
     }
-
-
+    //возвр аэродром по индексу
+    public T get(int index) {
+        if (index > -1 && index < places.size()) {
+            return places.get(index);
+        }
+        return null;
+    }
 }
