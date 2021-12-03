@@ -56,7 +56,6 @@ public class AirbusForm {
         leftButton.setName("Left");
         leftButton.setBounds(685, 408, 30, 30);
         leftButton.addActionListener(e -> direction(leftButton));
-
     }
 
     public AirbusForm() {
