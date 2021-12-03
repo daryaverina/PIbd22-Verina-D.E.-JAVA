@@ -3,7 +3,6 @@ import java.lang.reflect.Array;
 
 public class Aerodrome<T extends ITransport, G extends IIlluminator> {
 
-  //  private final Object[] places;
     private final T[] places;
 
     private final int pictureWidth;
@@ -89,9 +88,7 @@ public class Aerodrome<T extends ITransport, G extends IIlluminator> {
                 places[i].DrawTransport(g);
         }
     }
-    public void DrawSingle(Graphics g, int i){
-        places[i].DrawTransport(g);
-    }
+
 
     private void DrawMarking(Graphics g) {
         for (int i = 0; i < pictureWidth / placeSizeWidth; i++) {
