@@ -41,11 +41,11 @@ public class AerodromeCollection {
     }
 
     //индексатор с 2 параметрами
-    /*
+
     public ITransport get(String name, int index) {
         if (aerodromeStages.containsKey(name)) {
             return aerodromeStages.get(name).get(index);
         }
         return null;
-    }*/
+    }
 }
