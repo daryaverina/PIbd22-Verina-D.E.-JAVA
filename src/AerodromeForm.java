@@ -109,6 +109,21 @@ public class AerodromeForm {
         campsGroupBox.add(listBoxAerodromes);
         campsGroupBox.add(addAerodrome);
         campsGroupBox.add(deleteAerodrome);
+        parkAirbus.addActionListener(e -> createExcavator());
+        groupBox.setBounds(930, 150, 150, 100);
+        placeText.setBounds(40, 20, 60, 30);
+        placeTransport.setBounds(85, 20, 30, 30);
+        takeTransport.setBounds(40, 60, 90, 30);
+        takeTransport.addActionListener(e -> takePlane());
+        groupBox.setBorder(borderTake);
+        drawAerodrome.setBounds(0, 0, 890, 525);
+        equateGroupBox = new JPanel();
+        equateGroupBox.setLayout(null);
+        equateGroupBox.setBorder(borderCompare);
+        equateGroupBox.add(compareEquality);
+        equateGroupBox.add(countPlaceTransport);
+        equateGroupBox.add(placeCountText);
+        equateGroupBox.setBounds(930, 300, 150, 110);
         placeCountText.setBounds(40, 20, 60, 30);
         countPlaceTransport.setBounds(85, 20, 30, 30);
     }
@@ -166,6 +181,16 @@ public class AerodromeForm {
                     }
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(frame, "Не существующий транспорт", "Ошибка", JOptionPane.ERROR_MESSAGE);
+    private void takePlane() {
+        if (!placeTransport.getText().equals("")) {
+            try {
+                Plane transport = aerodrome.delete(Integer.parseInt(placeTransport.getText()));
+                if (transport != null) {
+                    AirbusForm airbusForm = new AirbusForm();
+                    airbusForm.setPlane(transport);
+                    frame.repaint();
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Транспорта не существует");
                 }
             }
         }

@@ -7,6 +7,7 @@ public class Aerodrome<T extends ITransport, G extends IIlluminator> {
     private final List<T> places;
 
     private final int maxCount;
+    private final T[] places;
 
     private final int pictureWidth;
 
@@ -15,8 +16,6 @@ public class Aerodrome<T extends ITransport, G extends IIlluminator> {
     private final int placeSizeWidth = 340;
 
     private final int placeSizeHeight = 125;
-
-
 
     public Aerodrome(int picWidth, int picHeight) {
         int width = picWidth / placeSizeWidth;
@@ -40,6 +39,25 @@ public class Aerodrome<T extends ITransport, G extends IIlluminator> {
             T plane = places.get(index);
             places.remove(index);
             return plane;
+        if ((index > places.length) || (index < 0)) return null;
+        else
+        {
+            if (places[index] == null) return null;
+            else
+            {
+                T temp = places[index];
+                places[index] = null;
+                return temp;
+            }
+        }
+    }
+
+    public int count(){
+        int counter = 0;
+        for (int i = 0; i < places.length; i++) {
+            if (places[i] != null) {
+                counter++;
+            }
         }
         return null;
     }
@@ -56,6 +74,7 @@ public class Aerodrome<T extends ITransport, G extends IIlluminator> {
         DrawMarking(g);
 
         for (int i = 0; i <places.size(); i++)
+        for (int i = 0; i <places.length; i++)
         {
             places.get(i).setPosition(i % (pictureWidth / placeSizeWidth) * placeSizeWidth + 6,
                     i / (pictureWidth / placeSizeWidth) * placeSizeHeight + 5, pictureWidth, pictureHeight);
