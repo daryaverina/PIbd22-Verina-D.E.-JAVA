@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class AerodromeCollection {
 
-    private final Map<String, Aerodrome<ITransport, IIlluminator>> aerodromeStages;
+    private final HashMap<String, Aerodrome<ITransport, IIlluminator>> aerodromeStages;
 
     private final int pictureWidth;
 
@@ -41,7 +41,6 @@ public class AerodromeCollection {
     }
 
     //индексатор с 2 параметрами
-
     public ITransport get(String name, int index) {
         if (aerodromeStages.containsKey(name)) {
             return aerodromeStages.get(name).get(index);
