@@ -1,7 +1,6 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.util.LinkedList;
-import java.util.List;
 
 public class AerodromeForm {
     private JFrame frame;
@@ -126,7 +125,8 @@ public class AerodromeForm {
                     JOptionPane.showMessageDialog(frame, "Аэродром переполнен");
                 }
             }
-        } else {
+        }
+        else {
             JOptionPane.showMessageDialog(frame, "Аэродром не выбран", "Ошибка", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -168,7 +168,8 @@ public class AerodromeForm {
                     JOptionPane.showMessageDialog(frame, "Не существующий транспорт", "Ошибка", JOptionPane.ERROR_MESSAGE);
                 }
             }
-        } else {
+        }
+        else {
             JOptionPane.showMessageDialog(frame, "Стоянка не выбрана", "Ошибка", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -184,7 +185,8 @@ public class AerodromeForm {
         int itemsCount = aerodromeList.size();
         if (itemsCount > 0 && (index < 0 || index >= itemsCount)) {
             listBoxAerodromes.setSelectedIndex(0);
-        } else if (index >= 0 && index < itemsCount) {
+        }
+        else if (index >= 0 && index < itemsCount) {
             listBoxAerodromes.setSelectedIndex(index);
         }
     }

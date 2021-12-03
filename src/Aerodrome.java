@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,11 +43,6 @@ public class Aerodrome<T extends ITransport, G extends IIlluminator> {
         }
         return null;
     }
-
-    /*private boolean CheckFreePlace(int indexPlace) {
-        return places[indexPlace] == null;
-    }*/
-
 
     public boolean equal(double number) {
         return number==places.size();
