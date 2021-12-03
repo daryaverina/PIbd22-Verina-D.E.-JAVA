@@ -67,7 +67,6 @@ public class AerodromeForm {
         equateGroupBox.setLayout(null);
         equateGroupBox.setBorder(borderCompare);
         equateGroupBox.add(compareEquality);
-       // equateGroupBox.add(compareInequality);
         equateGroupBox.add(countPlaceTransport);
         equateGroupBox.add(placeCountText);
         equateGroupBox.setBounds(930, 300, 150, 110);
@@ -111,13 +110,11 @@ public class AerodromeForm {
     private void takePlane() {
         if (!placeTransport.getText().equals("")) {
             try {
-
                 Plane transport = aerodrome.delete(Integer.parseInt(placeTransport.getText()));
                 if (transport != null) {
                     AirbusForm airbusForm = new AirbusForm();
                     airbusForm.setPlane(transport);
                     frame.repaint();
-
                 } else {
                     JOptionPane.showMessageDialog(frame, "Транспорта не существует");
                 }
@@ -125,7 +122,6 @@ public class AerodromeForm {
                 JOptionPane.showMessageDialog(frame, "Транспорта не существует");
             }
         }
-
     }
 
     private void compare() {

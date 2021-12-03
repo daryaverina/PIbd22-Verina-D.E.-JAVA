@@ -13,8 +13,6 @@ public class Aerodrome<T extends ITransport, G extends IIlluminator> {
 
     private final int placeSizeHeight = 125;
 
-
-
     public Aerodrome(int picWidth, int picHeight) {
         int width = picWidth / placeSizeWidth;
         int height = picHeight / placeSizeHeight;
@@ -57,10 +55,6 @@ public class Aerodrome<T extends ITransport, G extends IIlluminator> {
         }
     }
 
-    private boolean CheckFreePlace(int indexPlace) {
-        return places[indexPlace] == null;
-    }
-
     public int count(){
         int counter = 0;
         for (int i = 0; i < places.length; i++) {
@@ -81,14 +75,12 @@ public class Aerodrome<T extends ITransport, G extends IIlluminator> {
 
     public void Draw(Graphics g) {
         DrawMarking(g);
-
         for (int i = 0; i <places.length; i++)
         {
             if(places[i]!=null)
                 places[i].DrawTransport(g);
         }
     }
-
 
     private void DrawMarking(Graphics g) {
         for (int i = 0; i < pictureWidth / placeSizeWidth; i++) {
@@ -100,6 +92,4 @@ public class Aerodrome<T extends ITransport, G extends IIlluminator> {
                     (pictureHeight / placeSizeHeight) * placeSizeHeight);
         }
     }
-
-
 }

@@ -56,7 +56,6 @@ public class Airbus extends Plane {
         }
     }
 
-
     public void DrawTransport(Graphics g) {
 
         super.DrawTransport(g);
@@ -95,7 +94,6 @@ public class Airbus extends Plane {
 
         if (!SecondLevel)
         {
-
             Polygon wing = new Polygon();
             wing.addPoint(_startPosX + 75, _startPosY + 75);
             wing.addPoint(_startPosX + 120, _startPosY + 75);
