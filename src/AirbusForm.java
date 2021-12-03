@@ -9,7 +9,7 @@ public class AirbusForm {
     private JButton rightButton;
     private JButton downButton;
     private JFrame frame;
-    private DrawPicture drawp;
+    private DrawPicture draw;
     private ITransport transport;
 
 
@@ -61,7 +61,7 @@ public class AirbusForm {
     }
 
     public AirbusForm() {
-        drawp = new DrawPicture();
+        draw = new DrawPicture();
         frame = new JFrame("Аэробус");
         frame.setSize(816, 489);
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -72,15 +72,15 @@ public class AirbusForm {
         frame.getContentPane().add(downButton);
         frame.getContentPane().add(leftButton);
         frame.getContentPane().add(rightButton);
-        frame.getContentPane().add(drawp);
-        drawp.setBounds(0, 0, 900, 500);
+        frame.getContentPane().add(draw);
+        draw.setBounds(0, 0, 900, 500);
         frame.repaint();
     }
 
 
     public void setPlane(ITransport transport) {
         this.transport = transport;
-        drawp.setTransport(transport);
+        draw.setTransport(transport);
         frame.revalidate();
         frame.repaint();
     }
