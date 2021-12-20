@@ -80,4 +80,8 @@ public class Aerodrome<T extends ITransport, G extends IIlluminator> {
         }
         return null;
     }
+
+    public void clear() {
+        places.clear();
+    }
 }

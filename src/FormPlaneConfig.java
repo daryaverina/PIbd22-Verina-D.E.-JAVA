@@ -47,15 +47,9 @@ public class FormPlaneConfig extends JDialog {
                 if(label.getText()=="Самолет"){
                     transport = new Plane((int) spinnerMaxSpeed.getValue(), (int) spinnerWeight.getValue(), Color.WHITE);
                 }
-                else if (label.getText()=="Аэробус"){
-                    if (!checkBoxSecondLevel.isSelected()){
-                        transport = new Airbus((int) spinnerMaxSpeed.getValue(), (int) spinnerWeight.getValue(), Color.WHITE, Color.WHITE,
-                                checkBoxStar.isSelected(), checkBoxSecondLevel.isSelected(), 1, 0);
-                    }
-                    else {
-                        transport = new Airbus((int) spinnerMaxSpeed.getValue(), (int) spinnerWeight.getValue(), Color.WHITE, Color.WHITE,
-                                checkBoxStar.isSelected(), checkBoxSecondLevel.isSelected(), 1, (int)spinnerWindowCount.getValue()/10-1);
-                    }
+                else if (label.getText()=="Аэробус") {
+                    transport = new Airbus((int) spinnerMaxSpeed.getValue(), (int) spinnerWeight.getValue(), Color.WHITE, Color.WHITE,
+                            checkBoxStar.isSelected(), checkBoxSecondLevel.isSelected());
                 }
             }
 

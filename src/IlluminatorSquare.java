@@ -43,4 +43,8 @@ public class IlluminatorSquare implements IIlluminator {
             }
         }
     }
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() + '.' + countWin.ordinal();
+    }
 }

@@ -47,7 +47,7 @@ public class Airbus extends Plane {
     }
 
     public Airbus(int maxSpeed, float weight, Color mainColor, Color dopColor,
-                  boolean star, boolean secondlevel, int windowcount, int IlluminatorNumber) {
+                  boolean star, boolean secondlevel) {
         super(maxSpeed, weight, mainColor, 100, 100);
         this.MaxSpeed = maxSpeed;
         this.Weight = weight;
@@ -56,7 +56,7 @@ public class Airbus extends Plane {
         this.Star = star;
         this.SecondLevel = secondlevel;
 
-        switch (windowcount) {
+       /* switch (windowcount) {
             case 0:
                 Illum = new IlluminatorCircle(IlluminatorNumber);
                 break;
@@ -66,8 +66,33 @@ public class Airbus extends Plane {
             case 2:
                 Illum = new IlluminatorSquare(IlluminatorNumber);
                 break;
+        }*/
+    }
+
+    public Airbus(String info) {
+        super("");
+        String[] strs = info.split(separator);
+        if (strs.length == 7) {
+            MaxSpeed = Integer.parseInt(strs[0]);
+            Weight = Float.parseFloat(strs[1]);
+            MainColor = Color.decode(strs[2]);
+            DopColor = Color.decode(strs[3]);
+            Star = Boolean.parseBoolean(strs[4]);
+            SecondLevel = Boolean.parseBoolean(strs[5]);
+            if (strs[6].contains("null")) {
+                Illum = null;
+            } else {
+                String[] argsAddition = strs[6].split("\\.");
+                int digit = Integer.parseInt(argsAddition[1]);
+                switch (argsAddition[0]) {
+                    case "IlluminatorCircle" -> Illum = new IlluminatorCircle(digit);
+                    case "IlluminatorOval" -> Illum = new IlluminatorOval(digit);
+                    case "IlluminatorSquare" -> Illum = new IlluminatorSquare(digit);
+                }
+            }
         }
     }
+
 
 
     public void DrawTransport(Graphics g) {
@@ -136,8 +161,9 @@ public class Airbus extends Plane {
             g.fillPolygon(starPolygon);
             g.setColor(Color.BLACK);
         }
-
-        Illum.draw(g, _startPosX, _startPosY, planeWidth, planeHeight);
+        if (Illum != null) {
+            Illum.draw(g, _startPosX, _startPosY, planeWidth, planeHeight);
+        }
         Polygon wings2 = new Polygon();
         wings2.addPoint(_startPosX + 65, _startPosY + 88);
         wings2.addPoint(_startPosX + 85, _startPosY + 88);
@@ -151,5 +177,10 @@ public class Airbus extends Plane {
         wings3.addPoint(_startPosX + 140, _startPosY + 80);
         wings3.addPoint(_startPosX + 125, _startPosY + 80);
         g.fillPolygon(wings3);
+    }
+    @Override
+    public String toString() {
+        return MaxSpeed + separator + Weight + separator + MainColor.getRGB() + separator + DopColor.getRGB() + separator
+                + Star + separator + SecondLevel  + separator + Illum;
     }
 }

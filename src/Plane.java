@@ -3,6 +3,7 @@ public class Plane extends Vehicle{
 
     protected int planeWidth = 300;
     protected int planeHeight = 115;
+    protected String separator = ";";
 
     public Plane(int maxSpeed, float weight, Color mainColor)
     {
@@ -19,6 +20,15 @@ public class Plane extends Vehicle{
         MainColor = mainColor;
         this.planeWidth = planeWidth;
         this.planeHeight = planeHeight;
+    }
+
+    public Plane(String info) {
+        String[] strs = info.split(separator);
+        if (strs.length == 3) {
+            MaxSpeed = Integer.parseInt(strs[0]);
+            Weight = Float.parseFloat(strs[1]);
+            MainColor = Color.decode(strs[2]);
+        }
     }
 
     @Override
@@ -135,5 +145,10 @@ public class Plane extends Vehicle{
                 }
                 break;
         }
+    }
+
+    @Override
+    public String toString() {
+        return MaxSpeed + separator + Weight + separator + MainColor.getRGB();
     }
 }

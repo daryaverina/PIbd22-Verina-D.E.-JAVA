@@ -1,11 +1,20 @@
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.util.LinkedList;
+import java.util.List;
 
 public class AerodromeForm {
     private JFrame frame;
    // private JButton parkPlane;
     //private JButton parkAirbus;
+   private JMenuBar menuBar;
+    private JMenu fileMenu;
+    private JMenu aerodromeFileMenu;
+    private JMenuItem saveFile;
+    private JMenuItem loadFile;
+    private JMenuItem saveAerodrome;
+    private JMenuItem loadAerodrome;
     private JButton parkTransport;
     private JButton takeTransport;
     private JButton addAerodrome;
@@ -30,7 +39,7 @@ public class AerodromeForm {
     public AerodromeForm() {
         initialization();
         frame = new JFrame("Аэродромы");
-        frame.setSize(1200, 564);
+        frame.setSize(1200, 575);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setResizable(false);
@@ -41,6 +50,7 @@ public class AerodromeForm {
         frame.getContentPane().add(groupBoxTake);
         frame.getContentPane().add(drawAerodromes);
         frame.getContentPane().add(campsGroupBox);
+        frame.setJMenuBar(menuBar);
         frame.repaint();
     }
 
@@ -112,6 +122,32 @@ public class AerodromeForm {
         campsGroupBox.add(deleteAerodrome);
         placeCountText.setBounds(40, 20, 60, 30);
         countPlaceTransport.setBounds(85, 20, 30, 30);
+
+        menuBar = new JMenuBar();
+        fileMenu = new JMenu("Файл");
+        saveFile = new JMenuItem("Сохранить");
+        saveFile.addActionListener(e -> {
+            saveFile();
+        });
+        loadFile = new JMenuItem("Загрузить");
+        loadFile.addActionListener(e -> {
+            loadFile();
+        });
+        aerodromeFileMenu = new JMenu("Стоянка");
+        saveAerodrome = new JMenuItem("Сохранить");
+        saveAerodrome.addActionListener(e -> {
+            saveAerodrome();
+        });
+        loadAerodrome = new JMenuItem("Загрузить");
+        loadAerodrome.addActionListener(e -> {
+            loadAerodrome();
+        });
+        fileMenu.add(saveFile);
+        fileMenu.add(loadFile);
+        aerodromeFileMenu.add(saveAerodrome);
+        aerodromeFileMenu.add(loadAerodrome);
+        menuBar.add(fileMenu);
+        menuBar.add(aerodromeFileMenu);
     }
 
     private void createTransport() {
@@ -204,6 +240,66 @@ public class AerodromeForm {
             excavatorForm.setPlane(listTransport.get(0));
             listTransport.remove(0);
             frame.repaint();
+        }
+    }
+
+    private void saveFile() {
+        JFileChooser fileSaveDialog = new JFileChooser();
+        fileSaveDialog.setFileFilter(new FileNameExtensionFilter("Текстовый файл", "txt"));
+        int result = fileSaveDialog.showSaveDialog(frame);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            if (aerodromeCollection.saveData(fileSaveDialog.getSelectedFile().getPath())) {
+                JOptionPane.showMessageDialog(frame, "Файл успешно сохранен", "Результат", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(frame, "Файл не сохранен", "Ошибка", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    private void loadFile() {
+        JFileChooser fileOpenDialog = new JFileChooser();
+        fileOpenDialog.setFileFilter(new FileNameExtensionFilter("Текстовый файл", "txt"));
+        int result = fileOpenDialog.showOpenDialog(frame);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            if (aerodromeCollection.loadData(fileOpenDialog.getSelectedFile().getPath())) {
+                JOptionPane.showMessageDialog(frame, "Файл успешно загружен", "Результат", JOptionPane.INFORMATION_MESSAGE);
+                reloadLevels();
+                frame.repaint();
+            } else {
+                JOptionPane.showMessageDialog(frame, "Файл не загружен", "Ошибка", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    private void saveAerodrome() {
+        JFileChooser fileSaveDialog = new JFileChooser();
+        fileSaveDialog.setFileFilter(new FileNameExtensionFilter("Текстовый файл", "txt"));
+        if (listBoxAerodromes.getSelectedValue() == null) {
+            JOptionPane.showMessageDialog(frame, "Выберите стоянку", "Ошибка", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        int result = fileSaveDialog.showSaveDialog(frame);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            if (aerodromeCollection.saveCamp(fileSaveDialog.getSelectedFile().getPath(), listBoxAerodromes.getSelectedValue())) {
+                JOptionPane.showMessageDialog(frame, "Файл успешно сохранен", "Результат", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(frame, "Файл не сохранен", "Ошибка", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    private void loadAerodrome() {
+        JFileChooser fileOpenDialog = new JFileChooser();
+        fileOpenDialog.setFileFilter(new FileNameExtensionFilter("Текстовый файл", "txt"));
+        int result = fileOpenDialog.showOpenDialog(frame);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            if (aerodromeCollection.loadAerodrome(fileOpenDialog.getSelectedFile().getPath())) {
+                JOptionPane.showMessageDialog(frame, "Файл успешно загружен", "Результат", JOptionPane.INFORMATION_MESSAGE);
+                reloadLevels();
+                frame.repaint();
+            } else {
+                JOptionPane.showMessageDialog(frame, "Файл не загружен", "Ошибка", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 }
