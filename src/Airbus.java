@@ -9,11 +9,24 @@ public class Airbus extends Plane {
     public boolean SecondLevel;
     private IIlluminator Illum;
 
+    public float getStartPosX() {
+        return _startPosX;
+    }
+
+    public IIlluminator getIlum() {
+        return Illum;
+    }
+
+    public void setIllum(IIlluminator illum) {
+        this.Illum = illum;
+    }
+
+
     public Color getDopColor() {
         return DopColor;
     }
 
-    private void setDopColor(Color dopColor) {
+    public void setDopColor(Color dopColor) {
         this.DopColor = dopColor;
     }
 

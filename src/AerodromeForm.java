@@ -4,8 +4,9 @@ import java.util.LinkedList;
 
 public class AerodromeForm {
     private JFrame frame;
-    private JButton parkPlane;
-    private JButton parkAirbus;
+   // private JButton parkPlane;
+    //private JButton parkAirbus;
+    private JButton parkTransport;
     private JButton takeTransport;
     private JButton addAerodrome;
     private JButton deleteAerodrome;
@@ -34,8 +35,9 @@ public class AerodromeForm {
         frame.setVisible(true);
         frame.setResizable(false);
         frame.setLayout(null);
-        frame.getContentPane().add(parkPlane);
-        frame.getContentPane().add(parkAirbus);
+        //frame.getContentPane().add(parkPlane);
+        //frame.getContentPane().add(parkAirbus);
+        frame.getContentPane().add(parkTransport);
         frame.getContentPane().add(groupBoxTake);
         frame.getContentPane().add(drawAerodromes);
         frame.getContentPane().add(campsGroupBox);
@@ -48,8 +50,9 @@ public class AerodromeForm {
         drawAerodromes = new DrawAerodromes(aerodromeCollection);
         borderTake = BorderFactory.createTitledBorder("Забрать транспорт");
         borderAerodromes = BorderFactory.createTitledBorder("Аэродромы");
-        parkPlane = new JButton("Припарковать самолет");
-        parkAirbus = new JButton("Припарковать аэробус");
+        //parkPlane = new JButton("Припарковать самолет");
+        //parkAirbus = new JButton("Припарковать аэробус");
+        parkTransport = new JButton("Припарковать транспорт");
         putTransportIntoList = new JButton("Поместить в список");
         addAerodrome = new JButton("Добавить аэродром");
         deleteAerodrome = new JButton("Удалить аэродром");
@@ -67,14 +70,12 @@ public class AerodromeForm {
         groupBoxTake.add(placeTransport);
         groupBoxTake.add(takeTransport);
         groupBoxTake.add(putTransportIntoList);
-        parkPlane.setBounds(850, 12, 300, 40);
-        parkPlane.addActionListener(e -> {
-            createPlane();
+
+        parkTransport.setBounds(850, 10, 300, 90);
+        parkTransport.addActionListener(e -> {
+            createTransport();
         });
-        parkAirbus.setBounds(850, 60, 300, 40);
-        parkAirbus.addActionListener(e -> {
-            createAirbus();
-        });
+
         groupBoxTake.setBounds(880, 110, 250, 160);
         placeText.setBounds(90, 20, 60, 30);
         placeTransport.setBounds(135, 20, 30, 30);
@@ -113,43 +114,19 @@ public class AerodromeForm {
         countPlaceTransport.setBounds(85, 20, 30, 30);
     }
 
-    private void createPlane() {
+    private void createTransport() {
         if (listBoxAerodromes.getSelectedIndex() >= 0) {
-            JColorChooser colorDialog = new JColorChooser();
-            JOptionPane.showMessageDialog(frame, colorDialog);
-            if (colorDialog.getColor() != null) {
-                Plane transport = new Plane(100, 1000, colorDialog.getColor());
+            FormPlaneConfig configPanel = new FormPlaneConfig(frame);
+            ITransport transport = configPanel.getTransport();
+            if (transport != null) {
                 if (aerodromeCollection.get(listBoxAerodromes.getSelectedValue()).add(transport)!=-1) {
                     frame.repaint();
                 } else {
-                    JOptionPane.showMessageDialog(frame, "Аэродром переполнен");
-                }
-            }
-        }
-        else {
-            JOptionPane.showMessageDialog(frame, "Аэродром не выбран", "Ошибка", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    private void createAirbus() {
-        if (listBoxAerodromes.getSelectedIndex() >= 0) {
-            JColorChooser colorDialog = new JColorChooser();
-            JOptionPane.showMessageDialog(frame, colorDialog);
-            if (colorDialog.getColor() != null) {
-                JColorChooser otherColorDialog = new JColorChooser();
-                JOptionPane.showMessageDialog(frame, otherColorDialog);
-                if (otherColorDialog.getColor() != null) {
-                    Plane transport = new Airbus(100, 1000, colorDialog.getColor(), otherColorDialog.getColor(),
-                            true,  true, 0, 0);
-                    if (aerodromeCollection.get(listBoxAerodromes.getSelectedValue()).add(transport)!=-1) {
-                        frame.repaint();
-                    } else {
-                        JOptionPane.showMessageDialog(frame, "Аэродром переполнен");
-                    }
+                    JOptionPane.showMessageDialog(frame, "Стоянка переполнена");
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(frame, "Аэродром не выбран", "Ошибка", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frame, "Стоянка не выбрана", "Ошибка", JOptionPane.ERROR_MESSAGE);
         }
     }
 
