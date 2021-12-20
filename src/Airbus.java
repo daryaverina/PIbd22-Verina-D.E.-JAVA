@@ -119,8 +119,8 @@ public class Airbus extends Plane {
 
         if (Star)
         {
-            int x_ = 62;
-            int y_ = 30;
+            int x_ = 72;
+            int y_ = 38;
             Polygon starPolygon = new Polygon();
             starPolygon.addPoint(_startPosX + x_, _startPosY - 10 + y_);
             starPolygon.addPoint(_startPosX + 2 + x_, _startPosY - 3 + y_);

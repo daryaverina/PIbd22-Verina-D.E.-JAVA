@@ -44,11 +44,18 @@ public class FormPlaneConfig extends JDialog {
             public void mousePressed(MouseEvent e) {
                 setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 JLabel label = (JLabel) e.getSource();
-                switch (label.getText()) {
-                    case "Самолет" -> transport = new Plane((int) spinnerMaxSpeed.getValue(), (int) spinnerWeight.getValue(), Color.WHITE);
-                    case "Аэробус" -> transport = new Airbus((int) spinnerMaxSpeed.getValue(), (int) spinnerWeight.getValue(), Color.WHITE, Color.WHITE,
-                            checkBoxStar.isSelected(), checkBoxSecondLevel.isSelected(), 1, (int)spinnerWindowCount.getValue()/10-1);
-
+                if(label.getText()=="Самолет"){
+                    transport = new Plane((int) spinnerMaxSpeed.getValue(), (int) spinnerWeight.getValue(), Color.WHITE);
+                }
+                else if (label.getText()=="Аэробус"){
+                    if (!checkBoxSecondLevel.isSelected()){
+                        transport = new Airbus((int) spinnerMaxSpeed.getValue(), (int) spinnerWeight.getValue(), Color.WHITE, Color.WHITE,
+                                checkBoxStar.isSelected(), checkBoxSecondLevel.isSelected(), 1, 0);
+                    }
+                    else {
+                        transport = new Airbus((int) spinnerMaxSpeed.getValue(), (int) spinnerWeight.getValue(), Color.WHITE, Color.WHITE,
+                                checkBoxStar.isSelected(), checkBoxSecondLevel.isSelected(), 1, (int)spinnerWindowCount.getValue()/10-1);
+                    }
                 }
             }
 
