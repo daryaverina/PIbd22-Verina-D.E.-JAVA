@@ -9,11 +9,24 @@ public class Airbus extends Plane {
     public boolean SecondLevel;
     private IIlluminator Illum;
 
+    public float getStartPosX() {
+        return _startPosX;
+    }
+
+    public IIlluminator getIlum() {
+        return Illum;
+    }
+
+    public void setIllum(IIlluminator illum) {
+        this.Illum = illum;
+    }
+
+
     public Color getDopColor() {
         return DopColor;
     }
 
-    private void setDopColor(Color dopColor) {
+    public void setDopColor(Color dopColor) {
         this.DopColor = dopColor;
     }
 
@@ -104,8 +117,8 @@ public class Airbus extends Plane {
 
         if (Star)
         {
-            int x_ = 62;
-            int y_ = 30;
+            int x_ = 72;
+            int y_ = 38;
             Polygon starPolygon = new Polygon();
             starPolygon.addPoint(_startPosX + x_, _startPosY - 10 + y_);
             starPolygon.addPoint(_startPosX + 2 + x_, _startPosY - 3 + y_);

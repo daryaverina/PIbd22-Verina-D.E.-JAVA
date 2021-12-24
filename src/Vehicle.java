@@ -46,7 +46,7 @@ public abstract class Vehicle implements ITransport {
         return MainColor;
     }
 
-    protected void setMainColor(Color mainColor) {
+    public void setMainColor(Color mainColor) {
         this.MainColor = mainColor;
     }
 }
