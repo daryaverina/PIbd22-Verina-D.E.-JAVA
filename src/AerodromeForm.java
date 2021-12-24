@@ -6,9 +6,7 @@ import java.util.List;
 
 public class AerodromeForm {
     private JFrame frame;
-   // private JButton parkPlane;
-    //private JButton parkAirbus;
-   private JMenuBar menuBar;
+    private JMenuBar menuBar;
     private JMenu fileMenu;
     private JMenu aerodromeFileMenu;
     private JMenuItem saveFile;
@@ -44,8 +42,6 @@ public class AerodromeForm {
         frame.setVisible(true);
         frame.setResizable(false);
         frame.setLayout(null);
-        //frame.getContentPane().add(parkPlane);
-        //frame.getContentPane().add(parkAirbus);
         frame.getContentPane().add(parkTransport);
         frame.getContentPane().add(groupBoxTake);
         frame.getContentPane().add(drawAerodromes);
@@ -60,8 +56,6 @@ public class AerodromeForm {
         drawAerodromes = new DrawAerodromes(aerodromeCollection);
         borderTake = BorderFactory.createTitledBorder("Забрать транспорт");
         borderAerodromes = BorderFactory.createTitledBorder("Аэродромы");
-        //parkPlane = new JButton("Припарковать самолет");
-        //parkAirbus = new JButton("Припарковать аэробус");
         parkTransport = new JButton("Припарковать транспорт");
         putTransportIntoList = new JButton("Поместить в список");
         addAerodrome = new JButton("Добавить аэродром");
