@@ -44,5 +44,9 @@ public class IlluminatorOval implements IIlluminator {
             }
         }
     }
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() + '.' + countWin.ordinal();
+    }
 }
 

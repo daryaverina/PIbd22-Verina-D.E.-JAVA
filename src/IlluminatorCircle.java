@@ -43,5 +43,9 @@ public class IlluminatorCircle implements IIlluminator{
             }
         }
     }
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() + '.' + countWin.ordinal();
+    }
 }
 
