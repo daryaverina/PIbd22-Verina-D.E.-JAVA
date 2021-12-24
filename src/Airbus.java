@@ -55,18 +55,6 @@ public class Airbus extends Plane {
         this.DopColor = dopColor;
         this.Star = star;
         this.SecondLevel = secondlevel;
-
-       /* switch (windowcount) {
-            case 0:
-                Illum = new IlluminatorCircle(IlluminatorNumber);
-                break;
-            case 1:
-                Illum = new IlluminatorOval(IlluminatorNumber);
-                break;
-            case 2:
-                Illum = new IlluminatorSquare(IlluminatorNumber);
-                break;
-        }*/
     }
 
     public Airbus(String info) {
